@@ -1,0 +1,47 @@
+body {
+    background-color: #313D45;
+}
+
+.full-background {
+    margin: 0;
+    padding: 0;
+    /* background-color: #202C33; */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.full-background .MuiBox-root {
+    color: #fff;
+
+}
+
+
+
+.custom-textfield .MuiOutlinedInput-root {
+    & fieldset {}
+
+    &:hover fieldset {
+        border-color: transparent !important;
+    }
+
+    &.Mui-focused fieldset {
+        border-color: transparent !important;
+    }
+}
+
+.custom-textfield input:-webkit-autofill {
+    background-color: #202C33 !important;
+    -webkit-box-shadow: 0 0 0 100px #202C33 inset;
+    -webkit-text-fill-color: #fff;
+}
+
+.custom-textfield .MuiInputLabel-root {
+    color: #fff;
+}
+
+.custom-textfield .MuiInputBase-input {
+    color: #fff;
+}
