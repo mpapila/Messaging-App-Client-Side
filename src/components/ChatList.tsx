@@ -32,7 +32,6 @@ function ChatList() {
     const newMessages = useSelector((state: RootState) => state.chatRoom.newMessages)
     const messages = useSelector((state: RootState) => state.chatRoom.messages)
     const isLoading = useSelector((state: RootState) => state.loading.isLoading)
-    const showChat = useSelector((state: RootState) => state.display.showChat)
     const showChatList = useSelector((state: RootState) => state.display.showChatList)
     const ChatRoomIdforNewMessage = useSelector((state: RootState) => state.chatRoom.chatRoomIdforNewMessage)
     const theme = useTheme();

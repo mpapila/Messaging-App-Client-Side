@@ -8,7 +8,7 @@ import { InitialMessage, Message } from './type';
 import { addMessage, setChatRoomIdforNewMessage, setMessages, setNewMessages } from './redux/ChatRoomSlice';
 
 function App() {
-  const [userId, setUserId] = useState<string>()
+  const [_userId, setUserId] = useState<string>()
   const dispatch = useDispatch()
   const messages = useSelector((state: RootState) => state.chatRoom.messages)
   const chatRoom = useSelector((state: RootState) => state.chatRoom.chatRoomId)

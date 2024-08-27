@@ -22,7 +22,7 @@ function Chat() {
     const token = localStorage.getItem('token');
     const [friendUsername, setFriendUsername] = useState()
     const [myUsername, setMyUsername] = useState()
-    const [userId, setUserId] = useState<string>()
+    const [_userId, _setUserId] = useState<string>()
     const chatSelected = useSelector((state: RootState) => state.chatRoom.chatSelected)
     const chatRoom = useSelector((state: RootState) => state.chatRoom.chatRoomId)
     const [inputValue, setInputValue] = useState("");

@@ -1,8 +1,7 @@
 import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link as RouterLink, useNavigate, } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { useDispatch, } from 'react-redux';
 import { setLoading } from '../redux/LoadingSlice';
 import '../styles/login.css'
 import ContactMailIcon from '@mui/icons-material/Forum';
@@ -12,7 +11,6 @@ function Register() {
     const navigate = useNavigate()
     const apiUrl = import.meta.env.VITE_API_URL
     const dispatch = useDispatch()
-    const isLoading = useSelector((state: RootState) => state.loading.isLoading)
     const [error, setError] = useState('')
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()

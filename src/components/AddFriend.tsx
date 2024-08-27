@@ -16,7 +16,6 @@ function AddFriend() {
     useSelector((state: RootState) => state.chatList.showAddFriend)
     const [allUsers, setAllUsers] = useState<User[]>([]);
     const [pendingId, setPendingId] = useState<User[]>([])
-    const isLoading = useSelector((state: RootState) => state.loading.isLoading)
 
 
 
