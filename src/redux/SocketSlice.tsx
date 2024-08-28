@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { io, Socket } from "socket.io-client"
+import { Socket } from "socket.io-client/"
+import { io } from "socket.io-client/dist/socket.io"
 const token = localStorage.getItem('token');
 const apiUrl = import.meta.env.VITE_API_URL
 
