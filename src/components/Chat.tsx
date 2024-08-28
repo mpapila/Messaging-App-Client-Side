@@ -110,7 +110,11 @@ function Chat() {
                 </>
             ) : (
                 <>
-                    <Box paddingX='5px' display='flex' alignItems='center' justifyContent='space-between' sx={{ backgroundColor: '#202C33' }}>
+                    <Box paddingX='5px' display='flex' alignItems='center' justifyContent='space-between'
+                        sx={{
+                            backgroundColor: '#202C33'
+
+                        }}>
                         <Box display='flex' flexDirection='row' alignItems='center'>
                             {!isMediumScreen && (
                                 <Box>
@@ -203,7 +207,14 @@ function Chat() {
                             </Box>
                         </Box>
                     </Box>
-                    <Box display='flex' alignItems='center' sx={{ backgroundColor: '#202C33' }}>
+                    <Box display='flex' alignItems='center' sx={{
+                        backgroundColor: '#202C33',
+                        position: isMediumScreen ? 'static' : 'fixed', // Fixed for mobile screens
+                        bottom: 0,
+                        width: '100%',
+                        padding: '8px 0',
+                        zIndex: 1000, // Ensure it stays on top
+                    }}>
                         <Tooltip title="This is only for appearance" arrow enterTouchDelay={0} leaveTouchDelay={3000} >
                             <Box
                                 sx={{ display: 'inline-block', '&:hover': { cursor: 'pointer', }, }}>
@@ -211,9 +222,15 @@ function Chat() {
                                     fontSize='large' sx={{ color: '#8696A0', '&:hover': { color: 'secondary.main', transform: 'scale(1.1)', }, transition: 'transform 0.2s ease-in-out', }} />
                             </Box>
                         </Tooltip>
-                        <TextField multiline value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyDown={handleKeyDown} inputProps={{ style: { paddingTop: '3px', paddingBottom: '3px', paddingLeft: '10px', borderRadius: "5px", color: 'white', backgroundColor: '#2A3942' } }} sx={{
-                            padding: '0', width: '90%', "& fieldset": { border: 'none' },
-                        }} InputLabelProps={{ shrink: false }} placeholder="Type a message" />
+                        <TextField
+                            multiline value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            inputProps={{ style: { paddingTop: '3px', paddingBottom: '3px', paddingLeft: '10px', borderRadius: "5px", color: 'white', backgroundColor: '#2A3942' } }}
+                            sx={{
+                                padding: '0', width: '90%', "& fieldset": { border: 'none' },
+                            }}
+                            InputLabelProps={{ shrink: false }} placeholder="Type a message" />
                     </Box>
 
                 </>
