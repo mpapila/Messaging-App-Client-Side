@@ -149,7 +149,7 @@ function Chat() {
                         overflow='scroll'
                         height='100vh'
                         sx={{
-                            backgroundImage: 'url("/src/football-field.jpg")',
+                            backgroundImage: 'url("/football-field.jpg")',
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat',
