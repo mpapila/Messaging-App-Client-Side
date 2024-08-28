@@ -153,6 +153,7 @@ function Chat() {
                         overflow='scroll'
                         height='100vh'
                         sx={{
+                            height: isMediumScreen ? 'calc(100vh - 56px)' : 'calc(100vh - 112px)', // Dynamically adjust height to account for input bar
                             backgroundImage: 'url("/football-field.jpg")',
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
