@@ -425,8 +425,14 @@ function ChatList() {
                                         const chatMessages = messages.filter(message => message.chatRoom === chat.chatRoomId)
                                         const sortedMessages = chatMessages.sort((a, b) => a.date > b.date ? 1 : -1)
                                         const latestMessage = sortedMessages[sortedMessages.length - 1]
+                                        const latestTimeStamps = latestMessage && (
+                                            <>
+                                                {latestMessage ? new Date(latestMessage.date).toLocaleTimeString() : 'No messages'}
+                                            </>
+                                        )
                                         const latestDisplay = latestMessage && (
                                             <>
+
                                                 <Typography >
                                                     {latestMessage.text.length == 0
                                                         ? "Click to send Messages"
@@ -469,7 +475,7 @@ function ChatList() {
                                                             {chat.friendName.charAt(0).toUpperCase() + chat.friendName.slice(1)}
                                                         </Typography>
                                                         <Typography sx={{ color: isNewMessage ? 'green' : 'white' }}>
-                                                            {chat.timestamp ? new Date(chat.timestamp).toLocaleTimeString() : 'No messages'}
+                                                            {latestTimeStamps}
                                                         </Typography>
                                                     </Box>
                                                     <Box display="flex" flexDirection='row' justifyContent='space-between' alignItems="center">
