@@ -115,7 +115,9 @@ function Chat() {
                             backgroundColor: '#202C33'
 
                         }}>
-                        <Box display='flex' flexDirection='row' alignItems='center'>
+                        <Box display='flex' flexDirection='row' alignItems='center'
+                            sx={{ position: isMediumScreen ? 'static' : 'fixed', }}
+                        >
                             {!isMediumScreen && (
                                 <Box>
                                     <IconButton
@@ -137,9 +139,9 @@ function Chat() {
                                 </Box>
                             </Tooltip>
                             <Typography color='white'>{friendUsername}</Typography>
-                        </Box>
+                        </Box >
+
                         <Box
-                            sx={{ position: isMediumScreen ? 'static' : 'fixed', }}
                         >
                             {isMediumScreen && (
                                 <IconButton
