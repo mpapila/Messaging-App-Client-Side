@@ -11,6 +11,7 @@ import { setChatSelected } from "../redux/ChatRoomSlice";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { setShowChat, setShowChatList } from "../redux/DisplaySlice";
 import { AlwaysScrollToBottom } from "../utils";
+import React from "react";
 
 
 
@@ -99,6 +100,8 @@ function Chat() {
 
     return (
 
+
+
         <Box
             width={widthStyle}
             height='100vh'
@@ -115,7 +118,7 @@ function Chat() {
                             position: isMediumScreen ? 'static' : 'fixed',
                             top: 0,
                             width: '100%',
-                            padding: '8px 0',
+                            // padding: '8px 0',
                             zIndex: 1000,
                             backgroundColor: '#202C33'
 
@@ -162,7 +165,7 @@ function Chat() {
                         overflow='scroll'
                         height='100vh'
                         sx={{
-                            height: isMediumScreen ? 'calc(100vh - 56px)' : 'calc(100vh - 112px)', // Dynamically adjust height to account for input bar
+                            // height: isMediumScreen ? 'calc(100vh - 56px)' : 'calc(100vh - 112px)', // Dynamically adjust height to account for input bar
                             backgroundImage: 'url("/football-field.jpg")',
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
@@ -190,25 +193,39 @@ function Chat() {
                                 {messages.map((msg, index) => {
                                     if (msg.chatRoom == chatRoom) {
                                         const formattedTime = new Date(msg.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                                        const transparentBox = !isMediumScreen && (
+                                            <Box
+                                                sx={{
+                                                    backgroundColor: 'transparent',
+                                                    height: '16px',
+                                                    width: '100%',
+                                                    display: 'block',
+                                                }}
+                                            />
+                                        );
                                         return (
+                                            <React.Fragment key={index}>
+                                                {transparentBox}
                                             // Messages sent by the user ('ownmessages') are aligned to the right (flex-end), while messages received from others ('recipients') are aligned to the left (flex-start).
-                                            <Box key={index} display='flex' flexDirection='column' alignItems={msg.type === 'ownmessages' ? 'flex-end' : 'flex-start'}>
-                                                <Box
-                                                    display='flex' flexDirection='column' justifyContent='flex-end' sx={{ maxWidth: '60%', borderRadius: '5px', color: msg.type === 'ownmessages' ? '#A42C3F' : '#8696A0', backgroundColor: msg.type === 'ownmessages' ? '#F8B73F' : '#202C33', padding: '5px', margin: '16px', position: 'relative' }}
-                                                >
-                                                    <Typography sx={{ overflowWrap: 'break-word' }}>  {msg.text}</Typography>
-                                                    <Typography
-                                                        sx={{
-                                                            fontSize: '0.75rem',
-                                                            color: '#bc2727',
-                                                            marginTop: 'auto',
-                                                            alignSelf: 'flex-end'
-                                                        }}
+                                                <Box key={index} display='flex' flexDirection='column' alignItems={msg.type === 'ownmessages' ? 'flex-end' : 'flex-start'}>
+                                                    <Box
+                                                        display='flex' flexDirection='column' justifyContent='flex-end' sx={{ maxWidth: '60%', borderRadius: '5px', color: msg.type === 'ownmessages' ? '#A42C3F' : '#8696A0', backgroundColor: msg.type === 'ownmessages' ? '#F8B73F' : '#202C33', padding: '5px', margin: '16px', position: 'relative' }}
                                                     >
-                                                        {formattedTime}
-                                                    </Typography>
+                                                        <Typography sx={{ overflowWrap: 'break-word' }}>  {msg.text}</Typography>
+                                                        <Typography
+                                                            sx={{
+                                                                fontSize: '0.75rem',
+                                                                color: '#bc2727',
+                                                                marginTop: 'auto',
+                                                                alignSelf: 'flex-end'
+                                                            }}
+                                                        >
+                                                            {formattedTime}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
+                                                {transparentBox}
+                                            </React.Fragment>
                                         )
                                     }
                                     return null
@@ -222,8 +239,8 @@ function Chat() {
                         position: isMediumScreen ? 'static' : 'fixed', // Fixed for mobile screens
                         bottom: 0,
                         width: '100%',
-                        padding: '8px 0',
-                        zIndex: 1000, // Ensure it stays on top
+                        // padding: '8px 0',
+                        zIndex: 1000,
                     }}>
                         <Tooltip title="This is only for appearance" arrow enterTouchDelay={0} leaveTouchDelay={3000} >
                             <Box
