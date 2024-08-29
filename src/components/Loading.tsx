@@ -13,7 +13,7 @@ function Loading() {
     }, []);
 
     return (
-        <Box sx={{ zIndex: '9999', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+        <Box sx={{ zIndex: '9999', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
             {showMessage && (
                 <Typography
                     variant="body2"

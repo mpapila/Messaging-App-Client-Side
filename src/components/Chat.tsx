@@ -197,7 +197,7 @@ function Chat() {
                                             <Box
                                                 sx={{
                                                     backgroundColor: 'transparent',
-                                                    height: '16px',
+                                                    height: '84px',
                                                     width: '100%',
                                                     display: 'block',
                                                 }}
@@ -206,7 +206,7 @@ function Chat() {
                                         return (
                                             <React.Fragment key={index}>
                                                 {transparentBox}
-                                            // Messages sent by the user ('ownmessages') are aligned to the right (flex-end), while messages received from others ('recipients') are aligned to the left (flex-start).
+                                                {/* // Messages sent by the user ('ownmessages') are aligned to the right (flex-end), while messages received from others ('recipients') are aligned to the left (flex-start). */}
                                                 <Box key={index} display='flex' flexDirection='column' alignItems={msg.type === 'ownmessages' ? 'flex-end' : 'flex-start'}>
                                                     <Box
                                                         display='flex' flexDirection='column' justifyContent='flex-end' sx={{ maxWidth: '60%', borderRadius: '5px', color: msg.type === 'ownmessages' ? '#A42C3F' : '#8696A0', backgroundColor: msg.type === 'ownmessages' ? '#F8B73F' : '#202C33', padding: '5px', margin: '16px', position: 'relative' }}
