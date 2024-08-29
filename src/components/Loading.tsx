@@ -20,7 +20,7 @@ function Loading() {
                     color="white"
                     sx={{ mb: 2, textAlign: 'center' }}
                 >
-                    Occasionally, long loading times may occur due to limitations with Free Tier Hosting. If you experience a delay, please wait a couple of minutes and then refresh the page. We appreciate your patience and understanding.
+                    Occasionally, long loading times may occur due to limitations with Free Tier Hosting. If you experience a delay, please wait a couple of minutes and then refresh the page. I, Mehmet Papila, appreciate your patience and understanding.
                 </Typography>
             )}
             <CircularProgress />
