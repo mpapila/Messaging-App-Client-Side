@@ -169,7 +169,7 @@ function Chat() {
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat',
-                            margin: '84px 0'
+                            padding: '84px 0'
                         }}
                     >
                         <Box
