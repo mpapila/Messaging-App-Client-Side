@@ -8,7 +8,7 @@ interface SocketState {
     socket: Socket
 }
 const initialState: SocketState = {
-    socket: io(`${apiUrl}`, { autoConnect: false, query: { token } })
+    socket: io(`${apiUrl}`, { transports: ["websocket"], autoConnect: false, query: { token } })
 }
 
 const socketSlice = createSlice({
