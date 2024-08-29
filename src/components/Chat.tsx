@@ -112,11 +112,12 @@ function Chat() {
                 <>
                     <Box paddingX='5px' display='flex' alignItems='center' justifyContent='space-between'
                         sx={{
+                            position: isMediumScreen ? 'static' : 'fixed',
                             backgroundColor: '#202C33'
 
                         }}>
                         <Box display='flex' flexDirection='row' alignItems='center'
-                            sx={{ position: isMediumScreen ? 'static' : 'fixed', }}
+
                         >
                             {!isMediumScreen && (
                                 <Box>
