@@ -193,6 +193,8 @@ function Chat() {
                                 {messages.map((msg, index) => {
                                     if (msg.chatRoom == chatRoom) {
                                         const formattedTime = new Date(msg.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                                        const isFirstMessage = index === 0;
+                                        const isLastMessage = index === messages.length - 1;
                                         const transparentBox = !isMediumScreen && (
                                             <Box
                                                 sx={{
@@ -205,7 +207,7 @@ function Chat() {
                                         );
                                         return (
                                             <React.Fragment key={index}>
-                                                {transparentBox}
+                                                {isFirstMessage && transparentBox}
                                                 {/* // Messages sent by the user ('ownmessages') are aligned to the right (flex-end), while messages received from others ('recipients') are aligned to the left (flex-start). */}
                                                 <Box key={index} display='flex' flexDirection='column' alignItems={msg.type === 'ownmessages' ? 'flex-end' : 'flex-start'}>
                                                     <Box
@@ -224,7 +226,7 @@ function Chat() {
                                                         </Typography>
                                                     </Box>
                                                 </Box>
-                                                {transparentBox}
+                                                {isLastMessage && transparentBox}
                                             </React.Fragment>
                                         )
                                     }
