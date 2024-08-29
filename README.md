@@ -3,8 +3,7 @@
 This is the frontend for a real-time messaging app built using React, TypeScript, Redux Toolkit, and Socket.IO. The app allows users to send and receive messages, manage friend requests, and dynamically update the chat list and chat rooms.
 
 ## Live Site
-[Where-is-Waldo-Server-Side])
-
+[https://messaging-app-client-side.onrender.com](https://messaging-app-client-side.onrender.com/)
 
 ## Server Repository
 [Messaging-App-Server-Side](https://github.com/mpapila/Messaging-App-Server-Side)
