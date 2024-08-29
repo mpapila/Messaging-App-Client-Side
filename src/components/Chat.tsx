@@ -165,11 +165,11 @@ function Chat() {
                         overflow='scroll'
                         height='100vh'
                         sx={{
-                            // height: isMediumScreen ? 'calc(100vh - 56px)' : 'calc(100vh - 112px)', // Dynamically adjust height to account for input bar
                             backgroundImage: 'url("/football-field.jpg")',
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat',
+                            margin: '84px 0'
                         }}
                     >
                         <Box
@@ -187,27 +187,15 @@ function Chat() {
                                 justifyContent='end'
                                 sx={{
                                     height: '100%',
-                                    width: '100%'
+                                    width: '100%',
+
                                 }}
                             >
                                 {messages.map((msg, index) => {
                                     if (msg.chatRoom == chatRoom) {
                                         const formattedTime = new Date(msg.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                                        const isFirstMessage = index === 0;
-                                        const isLastMessage = index === messages.length - 1;
-                                        const transparentBox = !isMediumScreen && (
-                                            <Box
-                                                sx={{
-                                                    backgroundColor: 'transparent',
-                                                    height: '84px',
-                                                    width: '100%',
-                                                    display: 'block',
-                                                }}
-                                            />
-                                        );
                                         return (
                                             <React.Fragment key={index}>
-                                                {isFirstMessage && transparentBox}
                                                 {/* // Messages sent by the user ('ownmessages') are aligned to the right (flex-end), while messages received from others ('recipients') are aligned to the left (flex-start). */}
                                                 <Box key={index} display='flex' flexDirection='column' alignItems={msg.type === 'ownmessages' ? 'flex-end' : 'flex-start'}>
                                                     <Box
@@ -226,7 +214,6 @@ function Chat() {
                                                         </Typography>
                                                     </Box>
                                                 </Box>
-                                                {isLastMessage && transparentBox}
                                             </React.Fragment>
                                         )
                                     }

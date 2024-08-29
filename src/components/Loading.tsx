@@ -7,13 +7,13 @@ function Loading() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowMessage(true);
-        }, 10000);
+        }, 5000);
 
         return () => clearTimeout(timer);
     }, []);
 
     return (
-        <Box sx={{ zIndex: '9999', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
+        <Box sx={{ zIndex: '9999', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
             {showMessage && (
                 <Typography
                     variant="body2"
