@@ -11,6 +11,7 @@ import { setChatSelected } from "../redux/ChatRoomSlice";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { setShowChat, setShowChatList } from "../redux/DisplaySlice";
 import { AlwaysScrollToBottom } from "../utils";
+import SendIcon from '@mui/icons-material/Send';
 import React from "react";
 
 
@@ -83,6 +84,22 @@ function Chat() {
             }
         }
     };
+    const HandleSendButton = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        if (inputValue.trim() !== "") {
+            if (socket) {
+                const messageInput = {
+                    text: inputValue,
+                    chatRoomId: chatRoom,
+                }
+                socket.emit('chat message', messageInput);
+                setInputValue("");
+            } else {
+                console.error('Socket is not initialized');
+                navigate('/login');
+            }
+        }
+    }
     let displayStyle = 'block';
     let widthStyle = '100%';
 
@@ -247,6 +264,13 @@ function Chat() {
                                 padding: '0', width: '90%', "& fieldset": { border: 'none' },
                             }}
                             InputLabelProps={{ shrink: false }} placeholder="Type a message" />
+                        <IconButton
+                            sx={{ color: '#00A669', marginRight: '5px' }}
+                            onClick={HandleSendButton}
+                            aria-label="Send"
+                        >
+                            <SendIcon />
+                        </IconButton>
                     </Box>
 
                 </>
