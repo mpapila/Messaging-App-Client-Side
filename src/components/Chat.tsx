@@ -113,6 +113,10 @@ function Chat() {
                     <Box paddingX='5px' display='flex' alignItems='center' justifyContent='space-between'
                         sx={{
                             position: isMediumScreen ? 'static' : 'fixed',
+                            top: 0,
+                            width: '100%',
+                            padding: '8px 0',
+                            zIndex: 1000,
                             backgroundColor: '#202C33'
 
                         }}>
