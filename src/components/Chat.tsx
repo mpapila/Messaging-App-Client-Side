@@ -138,7 +138,9 @@ function Chat() {
                             </Tooltip>
                             <Typography color='white'>{friendUsername}</Typography>
                         </Box>
-                        <Box>
+                        <Box
+                            sx={{ position: isMediumScreen ? 'static' : 'fixed', }}
+                        >
                             {isMediumScreen && (
                                 <IconButton
                                     sx={{ color: 'white' }}
