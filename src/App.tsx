@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSocket } from './redux/SocketSlice';
 import { RootState } from './redux/store';
 import { InitialMessage, Message } from './type';
-import { addMessage, setChatRoomIdforNewMessage, setMessages, setNewMessages } from './redux/ChatRoomSlice';
+import { addMessage, setMessages, addChatRoomIdWithNewMessages, removeChatRoomIdWithNewMessages } from './redux/ChatRoomSlice';
 
 function App() {
   const [_userId, setUserId] = useState<string>()
@@ -18,13 +18,10 @@ function App() {
     dispatch(setSocket(socket));
 
     socket.on('initial', (initialData) => {
-      console.log('recieved inital userId:', initialData)
+      console.log('received initalData:', initialData)
       setUserId(initialData.userId)
       const initialMessages = initialData.messages
         .map((message: InitialMessage) => {
-          if (initialData.userId !== message.senderId) {
-            dispatch(setChatRoomIdforNewMessage(message.chatRoom));
-          }
           return {
             id: message.id,
             type: message.senderId === initialData.userId ? 'ownmessages' : 'recipients',
@@ -38,7 +35,6 @@ function App() {
 
       dispatch(setMessages(initialMessages))
     })
-
 
     socket.on('chat message', (messageData) => {
       console.log('messageData', messageData)
@@ -57,7 +53,7 @@ function App() {
         dispatch(addMessage(newMessage));
         const ours = messageData.backendUserId === currentUserId
         if (!ours) {
-          dispatch(setNewMessages(true))
+          dispatch(addChatRoomIdWithNewMessages(messageData.chatRoom))
         }
         return currentUserId
       });

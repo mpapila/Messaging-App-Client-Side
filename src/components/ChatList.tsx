@@ -12,7 +12,7 @@ import { RootState } from "../redux/store";
 import { toggleShowAddFriend } from "../redux/ChatListSlice";
 import { useEffect, useState } from "react";
 import { eachCard, User } from "../type";
-import { setChatRoomId, setChatSelected, setNewMessages, removeChatRoomIdforNewMessage } from "../redux/ChatRoomSlice";
+import { removeChatRoomIdWithNewMessages, setChatRoomId, setChatSelected } from "../redux/ChatRoomSlice";
 import PriorityHighIcon from '@mui/icons-material/Error';
 import { setLoading } from "../redux/LoadingSlice";
 import Loading from "./Loading";
@@ -29,11 +29,10 @@ function ChatList() {
     const [myId, setMyId] = useState()
     const [myName, setMyName] = useState()
     const [eachCard, setEachCard] = useState<eachCard[]>([])
-    const newMessages = useSelector((state: RootState) => state.chatRoom.newMessages)
+    const chatRoomIdsWithNewMessages = useSelector((state: RootState) => state.chatRoom.chatRoomIdsWithNewMessages)
     const messages = useSelector((state: RootState) => state.chatRoom.messages)
     const isLoading = useSelector((state: RootState) => state.loading.isLoading)
     const showChatList = useSelector((state: RootState) => state.display.showChatList)
-    const ChatRoomIdforNewMessage = useSelector((state: RootState) => state.chatRoom.chatRoomIdforNewMessage)
     const theme = useTheme();
     const isMediumScreen = useMediaQuery(theme.breakpoints.up('md'));
     // console.log('eachCard', eachCard)
@@ -421,7 +420,7 @@ function ChatList() {
 
                                 {eachCard.length > 0 ? (
                                     eachCard.map((chat, index) => {
-                                        const isNewMessage = newMessages && ChatRoomIdforNewMessage.includes(chat.chatRoomId)
+                                        const isNewMessage = chatRoomIdsWithNewMessages.includes(chat.chatRoomId)
                                         const chatMessages = messages.filter(message => message.chatRoom === chat.chatRoomId)
                                         const sortedMessages = chatMessages.sort((a, b) => a.date > b.date ? 1 : -1)
                                         const latestMessage = sortedMessages[sortedMessages.length - 1]
@@ -430,32 +429,43 @@ function ChatList() {
                                                 {latestMessage ? new Date(latestMessage.date).toLocaleTimeString() : 'No messages'}
                                             </>
                                         )
-                                        const latestDisplay = latestMessage && (
-                                            <>
+                                        const latestDisplay = latestMessage && latestMessage.text.length > 0
+                                            ? (
+                                                <>
 
-                                                <Typography >
-                                                    {latestMessage.text.length == 0
-                                                        ? "Click to send Messages"
-                                                        : latestMessage.text.length > 100
+                                                    <Typography >
+                                                        {latestMessage.text.length > 100
                                                             ? `${latestMessage.text.substring(0, 10)}...`
                                                             : latestMessage.text}
+                                                    </Typography>
+                                                    <Typography
+                                                        mr='6px'
+                                                        sx={{
+                                                            fontSize: '1px',
+                                                            color: 'green',
+                                                            display: isNewMessage ? 'display' : 'none'
+                                                        }}
+                                                    >
+                                                        <PriorityHighIcon />
+                                                    </Typography>
+                                                </>
+                                            )
+                                            : (
+                                                <Typography >
+                                                    Click to send Messages
                                                 </Typography>
-                                                <Typography mr='6px' sx={{ fontSize: '1px', color: 'green', display: isNewMessage ? 'display' : 'none' }}><PriorityHighIcon /></Typography>
-                                            </>
-                                        )
+                                            )
                                         return (
                                             <Card
                                                 key={index}
                                                 onClick={() => {
-                                                    dispatch(setNewMessages(false))
+                                                    dispatch(removeChatRoomIdWithNewMessages(chat.chatRoomId))
                                                     dispatch(setChatSelected(false))
                                                     dispatch(setChatRoomId(chat.chatRoomId));
                                                     dispatch(setChatSelected(true))
                                                     dispatch(setShowChat(true));
                                                     dispatch(setShowChatList(false));
                                                     // console.log('clicked for each chat room', chat.chatRoomId)
-
-                                                    dispatch(removeChatRoomIdforNewMessage(chat.chatRoomId));
                                                 }}
                                                 sx={{
                                                     display: 'flex', flexDirection: 'row', alignItems: 'center', height: '72px', width: '100%',

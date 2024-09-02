@@ -6,8 +6,8 @@ import { reset } from './LogoutSlice';
 const initialState: ChatRoomState = {
   chatSelected: false,
   chatRoomId: null,
-  newMessages: false,
-  chatRoomIdforNewMessage: [],
+  chatRoomIdsWithNewMessages: [],
+  // chatRoomIdforNewMessage: [],
   messages: [],
 }
 
@@ -22,15 +22,21 @@ const chatRoomSlice = createSlice({
       date: new Date(action.payload.date).toISOString()
       state.messages.push(action.payload);
     },
-    setChatRoomIdforNewMessage: (state: ChatRoomState, action: PayloadAction<string | null>) => {
-      state.chatRoomIdforNewMessage.push(action.payload);
+    addChatRoomIdWithNewMessages: (state: ChatRoomState, action: PayloadAction<string>) => {
+      state.chatRoomIdsWithNewMessages.push(action.payload);
     },
-    removeChatRoomIdforNewMessage: (state: ChatRoomState, action: PayloadAction<string | null>) => {
-      state.chatRoomIdforNewMessage.filter(id => id !== action.payload)
+    removeChatRoomIdWithNewMessages: (state: ChatRoomState, action: PayloadAction<string>) => {
+      state.chatRoomIdsWithNewMessages = state.chatRoomIdsWithNewMessages.filter(id => id !== action.payload)
     },
-    setNewMessages: (state: ChatRoomState, action: PayloadAction<boolean>) => {
-      state.newMessages = action.payload
-    },
+    // setChatRoomIdforNewMessage: (state: ChatRoomState, action: PayloadAction<string | null>) => {
+    //   state.chatRoomIdforNewMessage.push(action.payload);
+    // },
+    // removeChatRoomIdforNewMessage: (state: ChatRoomState, action: PayloadAction<string | null>) => {
+    //   state.chatRoomIdforNewMessage.filter(id => id !== action.payload)
+    // },
+    // setNewMessages: (state: ChatRoomState, action: PayloadAction<boolean>) => {
+    //   state.chatRoomIdsWithNewMessages = action.payload
+    // },
     setChatRoomId: (state: ChatRoomState, action: PayloadAction<string | null>) => {
       state.chatRoomId = action.payload;
     },
@@ -43,5 +49,5 @@ const chatRoomSlice = createSlice({
   },
 })
 
-export const { setChatRoomId, setChatSelected, setNewMessages, setChatRoomIdforNewMessage, removeChatRoomIdforNewMessage, setMessages, addMessage } = chatRoomSlice.actions
+export const { setChatRoomId, setChatSelected, addChatRoomIdWithNewMessages, removeChatRoomIdWithNewMessages, setMessages, addMessage } = chatRoomSlice.actions
 export default chatRoomSlice.reducer

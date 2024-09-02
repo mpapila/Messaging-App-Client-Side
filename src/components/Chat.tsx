@@ -35,9 +35,6 @@ function Chat() {
     const isMediumScreen = useMediaQuery(theme.breakpoints.up('md'));
     const showChatList = useSelector((state: RootState) => state.display.showChatList)
 
-    console.log('messages', messages)
-
-
     useEffect(() => {
         if (!token) {
             navigate('/login');

@@ -53,8 +53,8 @@ export interface ChatListState {
 export interface ChatRoomState {
     chatRoomId?: string | null;
     chatSelected: boolean;
-    newMessages: boolean;
-    chatRoomIdforNewMessage: (string | null)[];
+    chatRoomIdsWithNewMessages: string[];
+    // chatRoomIdforNewMessage: (string | null)[];
     messages: Message[]
 }
 
