@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSocket } from './redux/SocketSlice';
 import { RootState } from './redux/store';
 import { InitialMessage, Message } from './type';
-import { addMessage, setMessages, addChatRoomIdWithNewMessages, removeChatRoomIdWithNewMessages } from './redux/ChatRoomSlice';
+import { addMessage, setMessages, addChatRoomIdWithNewMessages } from './redux/ChatRoomSlice';
 
 function App() {
   const [_userId, setUserId] = useState<string>()
